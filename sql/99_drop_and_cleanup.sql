@@ -1,0 +1,2 @@
+-- Run statements one at a time in Athena
+-- DROP TABLE spotify_similarity_db.results_eval_delta_audio_vs_audio_lyrics_flagged;

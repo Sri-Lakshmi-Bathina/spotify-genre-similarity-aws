@@ -1,0 +1,11 @@
+{
+  "region": "us-east-1",
+  "s3_bucket": "spotify-genre-similarity-sri",
+  "athena_database": "spotify_similarity_db",
+  "top_genres_n": 20,
+  "lyrics_sample_total": 800,
+  "lyrics_per_genre": 40,
+  "eval_k": 10,
+  "eval_n_queries": 150,
+  "alpha_audio_weight": 0.8
+}

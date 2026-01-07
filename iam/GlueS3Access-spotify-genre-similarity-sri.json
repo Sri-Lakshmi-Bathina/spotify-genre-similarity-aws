@@ -1,0 +1,50 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "AllowListBucketForGluePaths",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListBucket"
+			],
+			"Resource": "arn:aws:s3:::spotify-genre-similarity-sri",
+			"Condition": {
+				"StringLike": {
+					"s3:prefix": [
+						"raw/*",
+						"curated/*",
+						"results/*",
+						"athena-query-results/*"
+					]
+				}
+			}
+		},
+		{
+			"Sid": "AllowReadRaw",
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::spotify-genre-similarity-sri/raw/*"
+			]
+		},
+		{
+			"Sid": "AllowWriteCuratedResultsAndAthenaOutput",
+			"Effect": "Allow",
+			"Action": [
+				"s3:PutObject",
+				"s3:DeleteObject",
+				"s3:GetObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::spotify-genre-similarity-sri/curated*",
+				"arn:aws:s3:::spotify-genre-similarity-sri/curated/*",
+				"arn:aws:s3:::spotify-genre-similarity-sri/results*",
+				"arn:aws:s3:::spotify-genre-similarity-sri/results/*",
+				"arn:aws:s3:::spotify-genre-similarity-sri/athena-query-results*",
+				"arn:aws:s3:::spotify-genre-similarity-sri/athena-query-results/*"
+			]
+		}
+	]
+}

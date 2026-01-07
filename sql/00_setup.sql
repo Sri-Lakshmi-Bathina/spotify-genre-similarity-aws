@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS spotify_similarity_db;
+SHOW DATABASES;
