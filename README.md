@@ -9,8 +9,8 @@ End-to-end analytics workflow on **AWS S3 + Glue + Athena + QuickSight** for a g
 4. **Extend with lyrics** (free lyrics API) and quantify the impact vs audio-only similarity.
 
 ## Dataset
-- Kaggle: *Top Spotify Songs 2023* (tracks + artists)  
-  Source: https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023
+- Kaggle: *Spotify Datasets* (tracks + artists)  
+  Source: https://www.kaggle.com/datasets/lehaknarnauli/spotify-datasets
 
 ## AWS environment (your run)
 - Region: `us-east-1`
