@@ -54,6 +54,12 @@ Services used:
 
 ---
 
+## 🏗️ Architecture 
+**S3 (raw)**  **Glue Crawlers → (catalog)** → **Glue Jobs (curation + evaluation)** → **S3 (curated/results)** → **Athena Query** → **QuickSight Analysis → Dashboard**
+<img width="1001" height="311" alt="Spotify_architecture drawio" src="https://github.com/user-attachments/assets/e5fe9420-803b-4d73-84ef-f9abc73730d3" />
+
+---
+
 ## Prerequisites
 - AWS Account (Free Tier), Region: `us-east-1`
 - S3 bucket created: `spotify-genre-similarity-sri`
@@ -62,11 +68,6 @@ Services used:
   - Database: `spotify_similarity_db`
   - Query results location: `s3://spotify-genre-similarity-sri/athena-query-results/`
 - IAM role for Glue: `AWSGlueServiceRole-spotify-genre-similarity`
-
----
-
-## 🏗️ Architecture 
-**S3 (raw)**  **Glue Crawlers → (catalog)** → **Glue Jobs (curation + evaluation)** → **S3 (curated/results)** → **Athena Query** → **QuickSight Analysis → Dashboard**
 
 ---
 
