@@ -46,8 +46,8 @@ Services used:
 
 ## 🧾 Dataset
 
-- Source (Kaggle): `Top Spotify Songs 2023`
-- Link: https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023
+- Source (Kaggle): `Spotify Dataset`
+- Link: https://www.kaggle.com/datasets/lehaknarnauli/spotify-datasets
 - Raw inputs used:
   - `raw/tracks/tracks.csv`
   - `raw/artists/artists.csv`
