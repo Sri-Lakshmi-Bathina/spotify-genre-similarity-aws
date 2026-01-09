@@ -1,9 +1,7 @@
 # QuickSight — Build the Final Dashboard (Analysis → Dashboard)
 
-This guide assumes your tables already exist in the Glue Data Catalog and are queryable in Athena.
-
 ## Prerequisites (one-time)
-1. **QuickSight account (us-east-1)** created and you can access **Author** features.
+1. **QuickSight account (us-east-1)** 
 2. **Enable Athena access** in QuickSight:
    - QuickSight → *Manage QuickSight* → **Security & permissions**
    - Under **AWS services**, enable **Amazon Athena** and **AWS Glue**
@@ -23,15 +21,14 @@ For each table:
 2. Choose **Athena**
 3. Data source name (example): `athena_spotify_similarity`
 4. Select:
-   - Workgroup: `primary`
    - Database: `spotify_similarity_db`
    - Table: pick one of the tables above
-5. **Import to SPICE** (recommended for dashboard performance) *or* **Direct query** (simpler; may be slower)
+5. **Direct query** 
 6. Click **Visualize**
 
 Repeat until you have 4 datasets. You can build visuals across datasets in the same Analysis.
 
-## B. Create an Analysis (single place for all visuals)
+## B. Create an Analysis 
 1. QuickSight → **Analyses** → **New analysis**
 2. Add datasets:
    - `curated_tracks_by_genre` (genre distribution)
@@ -39,16 +36,14 @@ Repeat until you have 4 datasets. You can build visuals across datasets in the s
    - `results_eval_audio_similarity` (audio-only evaluation)
    - `results_eval_delta_audio_vs_audio_lyrics_flagged` (lyrics impact)
 
-### Sheet layout recommendation (one dashboard, multiple sections)
-Create a **single analysis** with **one sheet** (recommended for “GitHub-ready” export) and arrange visuals in 4 blocks:
+### Sheet layout recommendation 
 
 #### Block 1 — Genre coverage (what data exists per genre)
 Visual 1 (bar chart): **Tracks per genre**
 - Dataset: `curated_tracks_by_genre`
 - X: `genre`
-- Y: `countDistinct(track_id)` *(or `count(*)` if track_id is unique)*
+- Y: `countDistinct(track_id)` 
 - Sort: **Descending by countDistinct(track_id)**
-- Optional filter: exclude very small genres (e.g., < 10 tracks) to reduce noise
 
 #### Block 2 — Top predictors per genre (feature importance)
 Visual 2 (horizontal bar chart): **Importance (Normalized)**
@@ -92,10 +87,6 @@ QuickSight requires a filter first, then you can add it as a control.
    - Choose **Dropdown** (single select) and place it at the top
 6. Rename the control label to: `Genre`
 
-Tip: If you want the same dropdown to drive multiple datasets, you need either:
-- a **joined dataset** with a shared `genre` field, or
-- create separate filters per dataset (same control label) and align them visually.
-
 ## D. Sorting and “Top N” behavior
 - For bar charts:
   - Field well → click **genre** → **Sort** → Descending by your metric (count, delta, etc.)
@@ -109,17 +100,6 @@ Tip: If you want the same dropdown to drive multiple datasets, you need either:
 
 ## F. Publish as a Dashboard
 1. In the Analysis, click **Share** → **Publish dashboard**
-2. Name: `Spotify Similarity — Genre Split & Lyrics Impact`
-3. Choose who can access:
-   - Private (only you), or
-   - Specific users/groups (recommended)
-4. After publishing:
-   - Dashboard → **Share** → copy link (if your account allows)
-   - Dashboard → **Export** → **PDF** (for GitHub)
-
-## G. Permissions and cost tips
-- Use **SPICE** when possible for faster dashboards (and predictable cost).
-- If using **Direct query**, keep visuals lightweight and limit high-cardinality fields.
-- In IAM/S3 permissions, ensure QuickSight can read:
-  - `athena-query-results/`
-  - any `external_location` paths used by Athena CTAS tables.
+2. Name: `Spotify Similarity — Genre Split, Predictors, Evaluation, Lyrics`
+3. After publishing:
+   - Dashboard → **Export** → **PDF** 
