@@ -1,6 +1,4 @@
-# Assets checklist (to ensure nothing is missing)
-
-Use this checklist to verify your AWS environment matches what the repository expects.
+# Assets checklist 
 
 ## 1) S3 bucket + prefixes (project storage)
 
