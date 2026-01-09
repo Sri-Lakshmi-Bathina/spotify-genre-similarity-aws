@@ -56,11 +56,6 @@ From your notes (no custom schema policy changes):
 
 - `crawler_curated_lyrics_sample` → `curated_lyrics_by_track_sample_parquet` (Parquet)
 
-**Commonly missed (verify you have this):**
-- A crawler for `s3://spotify-genre-similarity-sri/curated/lyrics_enriched_by_genre/`
-  - Suggested name: `crawler_curated_lyrics_enriched_by_genre`
-  - Suggested table name: `curated_lyrics_enriched_by_genre`
-
 ## 4) Glue jobs (7 total)
 
 Spark (Glue ETL):
@@ -73,7 +68,6 @@ Spark (Glue ETL):
 
 Python Shell:
 - `job_fetch_lyrics_sample`
-  - Job parameter: `--additional-python-modules requests==2.31.0`
 
 Genre scope control (default **TOP_N**; optional variety):
 - See `docs/GENRE_SELECTION.md`
@@ -85,7 +79,7 @@ Role:
 
 Policies:
 - AWS managed: `AWSGlueServiceRole`
-- Your customer managed / inline policies to allow the role to:
+- Inline policies to allow the role to:
   - Read/write the project S3 bucket prefixes (`raw/`, `curated/`, `results/`, `athena-query-results/`)
   - Access Glue/Athena as needed for the jobs
 
