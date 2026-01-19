@@ -106,7 +106,7 @@ Services used:
 5. `job_convert_lyrics_jsonl_to_parquet.py` (Spark): convert JSONL → parquet partitioned by `genre`
 6. `job_build_lyrics_enriched_by_genre.py` (Spark): join curated tracks + lyrics
 7. `job_eval_audio_lyrics_similarity.py` (Spark): evaluate audio+lyrics similarity (Recall@K, MRR@K)
-<img width="1421" height="637" alt="Glue_jobs" src="https://github.com/user-attachments/assets/8fd341c3-9a23-4112-8d28-60f59c5d9b4f" />
+<img width="1414" height="615" alt="Glue Job" src="https://github.com/user-attachments/assets/790eec9a-666a-4e0b-8dae-e1118394f900" />
 
 ---
 
@@ -193,6 +193,13 @@ This repo documents the crawlers used. If you are recreating from scratch, creat
 For each genre, we compute feature importance across core audio metrics (e.g., `tempo`, `loudness`, `energy`, `acousticness`, etc.) and store:
 - `importance_raw`, `importance_abs`, `importance_norm`
 
+| Column          | Purpose                              |
+| --------------- | ------------------------------------ |
+| importance_raw  | Model output (direction + magnitude) |
+| importance_abs  | Strength of influence                |
+| importance_norm | Human-readable contribution (%)      |
+
+
 ### 2) Similarity ranking (Top-K neighbors)
 Given a query track, we rank candidate tracks **within the same genre** using a similarity score.
 
@@ -222,17 +229,15 @@ Then compare deltas:
 
 ## 🎯 Sampling Strategy (Default + Alternative)
 
-### ✅ Default (Recommended): Top-N Genres
+### ✅ Default: Top-N Genres
 - Most stable + interpretable
 - Ensures enough data per genre
 - Reduces noise from tiny genres
 
-### Alternative: “Variety Sampling” Across Genres
+### Extension: “Variety Sampling” Across Genres
 If you want broader coverage (closer to your local Python script idea), use a sampling strategy such as:
 - **Stratified sample**: take `X` tracks per genre for the top `M` genres
 - **Hybrid**: Top-N genres + `Y` long-tail genres (random) to increase diversity
-
-This project includes both patterns as options in the SQL/ETL approach (see `/athena/`).
 
 ---
 
@@ -244,7 +249,7 @@ QuickSight datasets used:
 3. `results_eval_audio_similarity` → audio effectiveness metrics
 4. `results_eval_delta_audio_vs_audio_lyrics_flagged` → lyrics impact (with baseline flag)
 
-<img width="1170" height="1042" alt="Screenshot 2026-01-07 at 7 05 34 PM" src="https://github.com/user-attachments/assets/5683ca88-1f4c-46ff-8d06-3c81fe7e798f" />
+<img width="1019" height="1043" alt="Screenshot 2026-01-17 at 8 00 34 PM" src="https://github.com/user-attachments/assets/b9e78370-81dc-4ad3-b959-2706187b5443" />
 
 ---
 
