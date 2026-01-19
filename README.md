@@ -1,4 +1,4 @@
-<h1 align="center">🎧 Spotify Genre-Split Similarity on AWS: Predictors, Evaluation, and Lyrics Impact </h1>
+<h1 align="center">🎧 Spotify Genre-Based Similarity on AWS: Predictors, Evaluation, and Lyrics Impact </h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Amazon%20S3-Data%20Lake-blue?logo=amazonaws&logoColor=white" />
