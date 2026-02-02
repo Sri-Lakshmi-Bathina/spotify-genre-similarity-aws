@@ -49,7 +49,7 @@ Services used:
 2. Configure AWS credentials and create S3 bucket (see [Prerequisites](#prerequisites))
 3. Upload sample data to S3 (see [Dataset](#dataset))
 4. Run Glue crawlers to catalog data (see [Glue Crawlers](#glue-crawlers))
-5. Execute ETL jobs in sequence (see [Pipeline Flow](#pipeline-flow))
+5. Execute ETL jobs in sequence (see [Pipeline Flow](#pipeline-flow-(End-to-End)))
 6. Query results in Athena
 7. Build QuickSight dashboards (see [QuickSight Dashboard](#quicksight-dashboard))
 
