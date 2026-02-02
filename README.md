@@ -1,4 +1,4 @@
-<h1 align="center">🎧 Spotify Genre-Based Song Similarity System on AWS </h1>
+<h1 align="center"> Spotify Genre-Based Song Similarity System on AWS </h1>
 
 **A serverless music recommendation pipeline that analyzes 1M+ Spotify tracks to identify genre-specific similarity patterns and evaluates the impact of lyrics on recommendation quality.**
 
@@ -14,7 +14,7 @@ Built with AWS S3, Glue, Athena, and QuickSight | End-to-end MLOps workflow from
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project builds a **modern, serverless analytics pipeline on AWS** to answer a music-recommendation use case:
 
@@ -33,7 +33,7 @@ Services used:
 
 ---
 
-## 🎯 Key Results
+## Key Results
 - Processed **1M+ tracks** across **15+ genres** using serverless AWS architecture
 - Achieved **85% Recall@10** for audio-based similarity in high-volume genres
 - Discovered lyrics improved recall by **12%** in lyric-heavy genres but decreased it in others
@@ -43,15 +43,15 @@ Services used:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 1. Clone the repository: `git clone https://github.com/Sri-Lakshmi-Bathina/spotify-genre-similarity-aws.git`
 2. Configure AWS credentials and create S3 bucket (see [Prerequisites](#prerequisites))
-3. Upload sample data to S3 (see [Dataset](#🧾dataset))
+3. Upload sample data to S3 (see [Dataset](#dataset))
 4. Run Glue crawlers to catalog data (see [Glue Crawlers](#glue-crawlers))
-5. Execute ETL jobs in sequence (see [Pipeline Flow](#🔁pipeline-flow))
+5. Execute ETL jobs in sequence (see [Pipeline Flow](#pipeline-flow))
 6. Query results in Athena
-7. Build QuickSight dashboards (see [QuickSight Dashboard](#📊quicksight-dashboard))
+7. Build QuickSight dashboards (see [QuickSight Dashboard](#quicksight-dashboard))
 
 **Estimated setup time:** 2-3 hours | **AWS Cost:** ~$5-10 for full run
 
@@ -59,13 +59,13 @@ Services used:
 
 ---
 
-## 🏗️ Architecture 
+## Architecture 
 
 <img width="1001" height="311" alt="Spotify_architecture drawio" src="https://github.com/user-attachments/assets/e5fe9420-803b-4d73-84ef-f9abc73730d3" />
 
 ---
 
-## ⚙️ Technologies Used
+## Technologies Used
 
 **Cloud Infrastructure:** AWS (S3, Glue, Athena, QuickSight, IAM)  
 **Data Processing:** PySpark, Python (Pandas, Scikit-learn)  
@@ -75,7 +75,7 @@ Services used:
 
 ---
 
-## 🧾 Dataset
+## Dataset
 
 - Source (Kaggle): `Spotify Dataset`
 - Link: https://www.kaggle.com/datasets/lehaknarnauli/spotify-datasets
@@ -96,7 +96,7 @@ Services used:
 
 ---
 
-## 🔁 Pipeline Flow (End-to-End)
+## Pipeline Flow (End-to-End)
 
 ### Phase A — Catalog Raw Data
 1. Upload CSVs into S3 `raw/`
@@ -158,7 +158,7 @@ Services used:
 
 ---
 
-## 💡 Technical Highlights
+## Technical Highlights
 
 - **Serverless Architecture Design**: Designed a cost-effective pipeline using AWS Glue instead of EMR/EC2
 - **Feature Engineering**: Computed genre-specific feature importance to identify what drives similarity
@@ -169,7 +169,7 @@ Services used:
 
 ---
 
-## 📂 Repository structure
+## Repository structure
 - `glue/` — Glue job scripts 
 - `sql/` — Athena queries used across the workflow (setup, validation, QA, CTAS)
 - `docs/` — Runbook, dashboard build notes, and exported dashboard PDFs
@@ -217,7 +217,7 @@ This repo documents the crawlers used. If you are recreating from scratch, creat
 
 ---
 
-## 🧠 Similarity + Predictors + Evaluation
+## Similarity + Predictors + Evaluation
 
 ### 1) Predictors (Top features per genre)
 For each genre, we compute feature importance across core audio metrics (e.g., `tempo`, `loudness`, `energy`, `acousticness`, etc.) and store:
@@ -236,7 +236,7 @@ Given a query track, we rank candidate tracks **within the same genre** using a 
 **Audio-only similarity:** distance over standardized audio features  
 **Audio+Lyrics similarity:** blended score: score = alpha * audio_similarity + (1 - alpha) * lyrics_similarity
 
-### ✅ Evaluation (Effectiveness)
+### Evaluation (Effectiveness)
 
 We evaluate “is this working?” with ranking metrics:
 
@@ -255,7 +255,7 @@ Then compare deltas:
 
 ### 🎯 Sampling Strategy (Default + Alternative)
 
-#### ✅ Default: Top-N Genres
+#### Default: Top-N Genres
 - Most stable + interpretable
 - Ensures enough data per genre
 - Reduces noise from tiny genres
@@ -267,7 +267,7 @@ If you want broader coverage (closer to your local Python script idea), use a sa
 
 ---
 
-## 📊 QuickSight Dashboard
+## QuickSight Dashboard
 
 QuickSight datasets used:
 1. `curated_tracks_by_genre` → genre distribution
@@ -279,7 +279,7 @@ QuickSight datasets used:
 
 ---
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - [ ] Implement real-time streaming with Kinesis for live track analysis
 - [ ] Add collaborative filtering to blend content-based + user behavior
