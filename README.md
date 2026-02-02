@@ -47,11 +47,11 @@ Services used:
 
 1. Clone the repository: `git clone https://github.com/Sri-Lakshmi-Bathina/spotify-genre-similarity-aws.git`
 2. Configure AWS credentials and create S3 bucket (see [Prerequisites](#prerequisites))
-3. Upload sample data to S3 (see [🧾 Dataset](#dataset))
+3. Upload sample data to S3 (see [Dataset](#🧾dataset))
 4. Run Glue crawlers to catalog data (see [Glue Crawlers](#glue-crawlers))
-5. Execute ETL jobs in sequence (see [🔁  Pipeline Flow](#pipeline-flow))
+5. Execute ETL jobs in sequence (see [Pipeline Flow](#🔁pipeline-flow))
 6. Query results in Athena
-7. Build QuickSight dashboards (see [📊 QuickSight Dashboard](#quicksight-dashboard))
+7. Build QuickSight dashboards (see [QuickSight Dashboard](#📊quicksight-dashboard))
 
 **Estimated setup time:** 2-3 hours | **AWS Cost:** ~$5-10 for full run
 
