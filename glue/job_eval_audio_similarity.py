@@ -8,10 +8,6 @@ from pyspark.context import SparkContext
 from pyspark.sql import functions as F
 from pyspark.sql import types as T
 from pyspark.sql.window import Window
-
-# -------------------------
-# Runtime parameters (Glue job arguments)
-# -------------------------
 import sys
 
 def _get_cli_arg(name: str, default: str):
