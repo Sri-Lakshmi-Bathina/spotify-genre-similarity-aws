@@ -7,10 +7,6 @@ from pyspark.context import SparkContext
 from pyspark.sql import functions as F
 from pyspark.sql import types as T
 from pyspark.sql.window import Window
-
-# -------------------------
-# Runtime parameters (Glue job arguments)
-# -------------------------
 import sys
 
 def _get_cli_arg(name: str, default: str):
@@ -88,14 +84,14 @@ df = (
 # Keep only rows with lyrics
 df = df.filter(F.col("lyrics_found") == True).filter(F.col("lyrics").isNotNull())
 
-# Ensure features not null
+# Ensure features are not null
 for c in AUDIO_FEATURES:
     df = df.filter(F.col(c).isNotNull())
 
     # Select genres for evaluation
     top_genres = _select_genres(df)
     df = df.filter(F.col("genre").isin(top_genres))
-# ---------- Build lyrics TF-IDF vectors (Spark ML) ----------
+# Build lyrics TF-IDF vectors (Spark ML) 
 tok = Tokenizer(inputCol="lyrics", outputCol="words")
 htf = HashingTF(inputCol="words", outputCol="tf", numFeatures=4096)
 idf = IDF(inputCol="tf", outputCol="lyr_vec")
@@ -108,7 +104,7 @@ tmp = idf_model.transform(tmp)
 # We only need: track_id, genre, artist_id_primary, audio features, lyrics vector
 tmp = tmp.select("track_id","genre","artist_id_primary", *AUDIO_FEATURES, "lyr_vec")
 
-# ---------- Collect per-genre into driver (small by design) ----------
+# Collect per-genre into driver (small by design) 
 genre_groups = (
     tmp.groupBy("genre")
        .agg(F.collect_list(F.struct("track_id","artist_id_primary", *AUDIO_FEATURES, "lyr_vec")).alias("rows"))
