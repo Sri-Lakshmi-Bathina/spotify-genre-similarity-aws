@@ -6,10 +6,6 @@ from awsglue.job import Job
 from pyspark.context import SparkContext
 from pyspark.sql import functions as F
 from pyspark.sql import types as T
-
-# -------------------------
-# Runtime parameters (Glue job arguments)
-# -------------------------
 import sys
 
 def _get_cli_arg(name: str, default: str):
@@ -77,7 +73,7 @@ missing = [c for c in needed if c not in df.columns]
 if missing:
     raise Exception(f"Missing required columns in curated table: {missing}. Found: {df.columns}")
 
-# Basic cleanup: drop rows with nulls in key columns / features
+# Basic cleanup: drop rows with nulls in key columns/features
 for c in ["id","genre","artist_id_primary"]:
     df = df.filter(F.col(c).isNotNull())
 
@@ -112,8 +108,7 @@ def vec(t):
 
 # Simple pairwise learning proxy:
 # Create pairs (a,b), label=1 if same artist else 0
-# Use a logistic regression in closed-form-ish way by fitting weights via correlation between delta features and label.
-# (Keeps dependencies light; Glue ML libs aren't guaranteed.)
+# Use a logistic regression in a closed-form-ish way by fitting weights via correlation between delta features and label.
 #
 # We compute per-feature: weight = (mean(|delta| for negatives) - mean(|delta| for positives))
 # Smaller deltas for positives -> larger positive weight (after sign flip).
